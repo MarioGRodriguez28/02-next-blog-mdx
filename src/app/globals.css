@@ -3,9 +3,31 @@
 @tailwind utilities;
 
 h2{
-    @apply text-center my-4 text-indigo-500 text-2xl;
+    @apply text-center my-4 text-indigo-700 text-2xl;
 }
 
 p{
     @apply my-4 text-gray-700;
 }
+
+pre > code {
+    @apply grid;
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  pre {
+    @apply p-4 rounded-xl my-4;
+  }
+  
+  article pre code {
+    @apply bg-transparent text-sm border-none;
+  }
+  
+  article code {
+    @apply bg-gray-200 px-2 rounded text-sm border;
+  }
+
+ p > code, h3 > code, h4 > code {
+    @apply bg-gray-200 px-2 rounded text-sm p-1;
+  }
