@@ -1,19 +1,20 @@
-import { Post } from "contentlayer/generated"
-import Link from "next/link"
-import DatePosted from "./DatePost"
-import PostItem from "./PostItem"
+import { Post } from "contentlayer/generated";
+import PostItem from "./PostItem";
 
-interface Props{
-    posts: Post[]
+interface Props {
+  posts: Post[];
 }
 
-const PostList = ({posts} : Props) => {
-    return (
-        <>
-            {posts.map((post) => (
-          <PostItem key={post._raw.flattenedPath} post={post}/>
-        ))}</>
-    )
-}
-
-export default PostList
+const PostsList = ({ posts }: Props) => {
+  return (
+    <>
+      {posts.map((post) => (
+        <PostItem
+          key={post._raw.flattenedPath}
+          post={post}
+        />
+      ))}
+    </>
+  );
+};
+export default PostsList;

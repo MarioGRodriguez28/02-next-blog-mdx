@@ -1,31 +1,28 @@
-import { Post } from "contentlayer/generated"
-import Link from "next/link"
+import Link from "next/link";
+import { format, parseISO } from "date-fns";
+import { Post } from "contentlayer/generated";
+import ButtonLink from "./ButtonLink";
 
 interface Props {
-    post: Post
+  post: Post;
 }
+
 const PostItem = ({ post }: Props) => {
-    return (
-        <>
-            <article className='bg-white rounded-lg shadow-lg overflow-hidden'>
-                <div className='px-6 py-4'>
-                    <h2 className='font-bold text-xl mb-2'>
-                        <Link href={post.url}>{post.title} </Link>
-                    </h2>
-                    <time>
-                        {new Date(post.date).toLocaleString("es-ES", {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric"
-                        })}
-                    </time>
-
-
-                    <div className='text-gray-700 text-base'>{post.description}</div>
-                </div>
-            </article>
-        </>
-    )
-}
-
-export default PostItem
+  return (
+    <article className="rounded border p-4">
+      <h2 className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 bg-clip-text text-4xl font-bold text-transparent">
+        <Link href={post.url}>{post.title}</Link>
+      </h2>
+      <time>
+        {new Date(post.date).toLocaleDateString("es-ES", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        })}
+      </time>
+      <p>{post.description}</p>
+      <ButtonLink href={post.url}>Seguir leyendo</ButtonLink>
+    </article>
+  );
+};
+export default PostItem;

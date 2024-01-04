@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation"
 import { allPosts } from "contentlayer/generated"
 import { useMDXComponent } from "next-contentlayer/hooks"
+import ButtonBack from "@/components/ButtonBack"
 
 interface Props {
     params: {
@@ -25,24 +26,30 @@ const PostLayout = ({ params }: Props) => {
     const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
     let MDXContent
     if (!post) {
-        return notFound()
+        notFound()
     } else {
         MDXContent = useMDXComponent(post.body.code)
     }
 
-    return (<div>
-
-        <div className="text-center my-4 text-3xl">{post.title}</div>
-        <time>
-            {new Date(post.date).toLocaleString("es-ES", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
+    return (
+        <>
+        <h1 className="text-center text-2xl font-bold uppercase">{post.title}</h1>
+        <div className="mb-8 text-center">
+          <time className="text-gray-700">
+            {new Date(post.date).toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
             })}
-        </time>
-
+          </time>
+        </div>
+  
         <MDXContent />
-    </div>
+  
+        <div className="mt-8 text-center">
+        <ButtonBack> Volver </ButtonBack >
+        </div>
+      </>
     )
 }
 
